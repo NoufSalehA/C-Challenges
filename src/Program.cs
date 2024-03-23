@@ -4,79 +4,25 @@ namespace FunctionChallenges
 {
     class Program
     {
-
-        public static void GuessingGame()
+        public static string ReverseWords(string sentence)
         {
 
-            Random random = new Random();
-            int randomNumber = random.Next(1, 1000);
-            int guesses = 0;
-            bool isItCorecct = false;
-
-            while (!isItCorecct)//true
-            {
-                Console.WriteLine("Enter a number from (1-1000), type quit to exit");
-                string input = Console.ReadLine() ?? "";
-
-                if (input != null)
-                {
-
-                    if (input.ToLower() == "quit")
-                    {
-                        Console.WriteLine("===============Quit The Game============");
-                        break;
-
-                    }
-                }
-                try
-                {
-
-                    if (int.TryParse(input, out int guess))
-                    {
-                        guesses++;
-
-
-                        if (guess == randomNumber)
-                        {
-
-                            Console.WriteLine("****You guessed the right number !****");
-                            isItCorecct = true;
-
-
-                        }
-                        else if (guess < randomNumber)
-                        {
-
-                            Console.WriteLine("===Too small!===");
-
-                        }
-                        else if (guess > randomNumber)
-                        {
-                            Console.WriteLine("===Too Big!===");
-
-                        }
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine($"Invalid Value :{e.Message}");
-
-                }
-
-            }
-
+      var WordReverse=string.Join(" ",sentence.Split(' ').Select(X=>new string(X.Reverse().ToArray())));
+      return WordReverse;
 
         }
+
         static void Main(string[] args)
         {
+            // Challenge 4: Simple Word Reversal
+            Console.WriteLine("\nChallenge 4: Simple Word Reversal");
+            string sentence = "This is the original sentence!";
+            string reversed = ReverseWords(sentence);
+            Console.WriteLine(reversed); // Expected outcome: "sihT si eht lanigiro !ecnetnes"
 
-            //Challenge 3: Guessing Game
-            // Uncomment to test the GuessingGame method
-            // Expected outcome: User input until the correct number is guessed or user inputs `Quit`
-            Console.WriteLine($"Welcome !\nChallenge 3: Guessing Game");
-            GuessingGame();
 
 
         }
     }
+
 }
